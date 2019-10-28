@@ -1,23 +1,6 @@
 # Getting started with Brigade
 
-### Using Kind (Kubernetes in Docker)
-
-```
-$ kind version
-v0.5.1
-
-$ kind create cluster
-Creating cluster "kind" ...
-✓ Ensuring node image (kindest/node:v1.15.3)
-✓ Preparing nodes 📦
-✓ Creating kubeadm config
-✓ Starting control-plane 🕹️
-✓ Installing CNI 🔌
-✓ Installing StorageClass 💾
-Cluster creation complete.
-```
-
-Following the [quickstart][quickstart], we deploy Brigade on our newly created cluster using Helm 3:
+Following the [quickstart][quickstart], we deploy Brigade on our cluster using Helm 3:
 
 ```
 $ helm version
@@ -51,5 +34,19 @@ replicaset.apps/brigade-kashti-649bfb6bbd         1         1         0       14
 NAME                                   SCHEDULE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
 cronjob.batch/brigade-brigade-vacuum   @hourly    False     0        <none>          14s
 ```
+
+We can see that by default, Brigade is really lightweight:
+
+- a Kubernetes controller, which looks for Brigade events
+- an API which we use to interact with Brigade
+- an optional web dashboard
+
+Additionally, we can configure components called gateways, which are used to map outside events into Brigade. Brigade comes with a few pre-configured gateways:
+
+- a generic web gateway for webhooks, which can be used with CloudEvents or any other valid JSON
+- GitHub integration, with support for the new Checks API
+- support for container registries, other git platforms (GitLab, BitBucket, Azure DevOps), cron jobs, Azure EventGrid, Trello, Kubernetes events, Kafka, and others
+
+- using the Brigade API, it is easy to build custom gateways to connect to internal / external systems
 
 [quickstart]: https://docs.brigade.sh/intro/quickstart/
