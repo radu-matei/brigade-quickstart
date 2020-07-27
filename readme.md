@@ -1,10 +1,11 @@
 # Getting started with Brigade
 
-Following the [quickstart][quickstart], we deploy Brigade on our cluster using Helm 3:
+Following the [quickstart][quickstart], we deploy Brigade on our cluster using
+Helm 3:
 
 ```
 $ helm version
-version.BuildInfo{Version:"v3.0.0-beta.4"}
+version.BuildInfo{Version:"v3.2.4", GitCommit:"0ad800ef43d3b826f31a5ad8dfbb4fe05d143688", GitTreeState:"clean", GoVersion:"go1.13.12"}
 
 $ helm repo add brigade https://brigadecore.github.io/charts
 $ kubectl create ns brigade
@@ -41,12 +42,17 @@ We can see that by default, Brigade is really lightweight:
 - an API which we use to interact with Brigade
 - an optional web dashboard
 
-Additionally, we can configure components called gateways, which are used to map outside events into Brigade. Brigade comes with a few pre-configured gateways:
+Additionally, we can configure components called gateways, which are used to map
+outside events into Brigade. Brigade comes with a few pre-configured gateways:
 
-- a generic web gateway for webhooks, which can be used with CloudEvents or any other valid JSON
+- a generic web gateway for webhooks, which can be used with CloudEvents or any
+  other valid JSON
 - GitHub integration, with support for the new Checks API
-- support for container registries, other git platforms (GitLab, BitBucket, Azure DevOps), cron jobs, Azure EventGrid, Trello, Kubernetes events, Kafka, and others
+- support for container registries, other git platforms (GitLab, BitBucket,
+  Azure DevOps), cron jobs, Azure EventGrid, Trello, Kubernetes events, Kafka,
+  and others
 
-- using the Brigade API, it is easy to build custom gateways to connect to internal / external systems
+- using the Brigade API, it is easy to build custom gateways to connect to
+  internal / external systems
 
 [quickstart]: https://docs.brigade.sh/intro/quickstart/

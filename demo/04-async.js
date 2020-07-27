@@ -1,13 +1,11 @@
-const { events, Job } = require('@brigadecore/brigadier');
+const { events, Job } = require("@brigadecore/brigadier");
 
-events.on('exec', exec);
+events.on("exec", async () => {
+  var hello = new Job("hello", "alpine", ["echo hello"]);
+  var goodbye = new Job("goodbye", "alpine", ["echo goodbye"]);
 
-async function exec(e, p) {
-  let j1 = new Job('j1', 'alpine', ['echo hello']);
-  let j2 = new Job('j2', 'alpine', ['echo goodbye']);
+  await hello.run();
+  await goodbye.run();
 
-  await j1.run();
-  await j2.run();
-
-  console.log('done');
-}
+  console.log("done");
+});
